@@ -7,18 +7,13 @@
 # General application configuration
 use Mix.Config
 
-config :phoenixgo,
-  ecto_repos: [Phoenixgo.Repo]
-
 # Configures the endpoint
 config :phoenixgo, PhoenixgoWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "zcMGsHBomiN37g+ZqDJz/ux4+Ozwk6KbGe09sDujSAkQdNZFPaVAdQk0GzVxjPFs",
   render_errors: [view: PhoenixgoWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Phoenixgo.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [
-    signing_salt: "sIhrOnPD5XrncXsCpQ7cjJUvK2ZSAVUb"
-  ]
+  live_view: [signing_salt: "sIhrOnPD5XrncXsCpQ7cjJUvK2ZSAVUb"]
 
 # Configures Elixir's Logger
 config :logger, :console,
