@@ -1,5 +1,6 @@
 defmodule PhoenixgoWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenixgo
+  socket "/live", Phoenix.LiveView.Socket
 
   socket "/socket", PhoenixgoWeb.UserSocket,
     websocket: true,
