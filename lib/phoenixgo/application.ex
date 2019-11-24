@@ -8,8 +8,6 @@ defmodule Phoenixgo.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
-      # Phoenixgo.Repo,
       # Start the endpoint when the application starts
       PhoenixgoWeb.Endpoint
       # Starts a worker by calling: Phoenixgo.Worker.start_link(arg)

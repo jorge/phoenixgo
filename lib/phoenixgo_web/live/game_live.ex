@@ -13,7 +13,6 @@ defmodule PhoenixgoWeb.GameLive do
   end
 
   def handle_event("place", index, %{assigns: assigns} = socket) do
-    Logger.info('handle event')
     new_state = State.place(assigns.state, String.to_integer(index))
     {:noreply, assign(socket, state: new_state)}
   end

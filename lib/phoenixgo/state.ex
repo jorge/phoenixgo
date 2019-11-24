@@ -105,9 +105,9 @@ defmodule Phoenixgo.State do
   def place(%State{positions: positions, current: current, captures: captures} = state, index) do
     opponent = next(current)
 
-    new_positions                   = List.replace_at(positions, index, current)
+    new_positions = List.replace_at(positions, index, current)
     {new_positions, fresh_captures} = capture(new_positions, opponent)
-    {new_positions, _}              = capture(new_positions, current)
+    {new_positions, _} = capture(new_positions, current)
 
     {_, new_captures} =
       Map.get_and_update(captures, opponent, fn current ->
@@ -117,10 +117,9 @@ defmodule Phoenixgo.State do
     new_current =
       case new_positions do
         ^positions -> current
-        _          -> opponent
+        _ -> opponent
       end
 
-    # this line updates the state map with the following keys
     %{state | positions: new_positions, current: new_current, captures: new_captures}
   end
 
