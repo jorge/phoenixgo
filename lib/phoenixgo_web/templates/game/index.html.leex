@@ -11,6 +11,7 @@
   </div>
 </div>
 
+
 <div class="board <%= @state.current %>">
   <%= for {value, index} <- Enum.with_index(@state.positions) do %>
     <%= if Phoenixgo.State.legal?(@state, index) do %>
@@ -18,5 +19,18 @@
     <% else %>
       <button class="<%= value %>" disabled="disabled"></button>
     <% end %>
+  <% end %>
+</div>
+
+<div class="history">
+  <%= if Phoenixgo.Game.history?(@game, @game.index + 1) do %>
+    <button phx-click="jump" phx-value="<%= @game.index + 1 %>">Undo</button>
+  <% else %>
+    <button disabled="disabled">Undo</button>
+  <% end %>
+  <%= if Phoenixgo.Game.history?(@game, @game.index - 1) do %>
+    <button phx-click="jump" phx-value="<%= @game.index - 1 %>">Redo</button>
+  <% else %>
+    <button disabled="disabled">Redo</button>
   <% end %>
 </div>
