@@ -2,6 +2,19 @@ defmodule Phoenixgo.Game do
   alias Phoenixgo.{Game, State}
   defstruct  history: [%State{}], index: 0
 
+
+  def legal?(game, position) do
+    State.legal?(Game.state(game), position) and not repeated_state?(game, position)
+  end
+
+  def repeated_state?(game, position) do
+    %Game{history: [%State{positions: tentative_positions} | history]} =
+      Game.place(game, position)
+    Enum.any?(history, fn %State{positions: positions} ->
+      positions == tentative_positions
+    end)
+  end
+
   def state(%Game{history: history, index: index}) do
     Enum.at(history, index)
   end
